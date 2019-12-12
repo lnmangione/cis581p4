@@ -52,6 +52,7 @@ def main():
     # ========== QUESTION 1 ==========
     model = torch.nn.Sequential(
         torch.nn.Linear(D_in, H),
+        torch.nn.Sigmoid(),
         torch.nn.Linear(H, D_out),
         torch.nn.Sigmoid()
     )
@@ -59,17 +60,18 @@ def main():
     losses, accuracies = train(model, loss_fn, x, y)
     plot_stats(losses, accuracies, 'Question 1')
 
-    # # ========== QUESTION 2 ==========
-    # model = torch.nn.Sequential(
-    #     torch.nn.Linear(D_in, H),
-    #     torch.nn.Linear(H, D_out),
-    #     torch.nn.Sigmoid()
-    # )
-    # loss_fn = torch.nn.CrossEntropyLoss(reduction='sum')
-    # losses, accuracies = train(model, loss_fn, x, y)
-    # plot_stats(losses, accuracies, 'Question 2')
-
-# ========== QUESTION 3 ==========
+    # ========== QUESTION 2 ==========
+    model = torch.nn.Sequential(
+        torch.nn.Linear(D_in, H),
+        torch.nn.Sigmoid(),
+        torch.nn.Linear(H, D_out),
+        torch.nn.Sigmoid()
+    )
+    loss_fn = torch.nn.BCELoss(reduction='sum')
+    losses, accuracies = train(model, loss_fn, x, y)
+    plot_stats(losses, accuracies, 'Question 2')
+#
+    # ========== QUESTION 3 ==========
     model = torch.nn.Sequential(
         torch.nn.Linear(D_in, H),
         torch.nn.ReLU(),
@@ -79,6 +81,17 @@ def main():
     loss_fn = torch.nn.MSELoss(reduction='sum')
     losses, accuracies = train(model, loss_fn, x, y)
     plot_stats(losses, accuracies, 'Question 3')
+
+    # ========== QUESTION 4 ==========
+    model = torch.nn.Sequential(
+        torch.nn.Linear(D_in, H),
+        torch.nn.ReLU(),
+        torch.nn.Linear(H, D_out),
+        torch.nn.Sigmoid()
+    )
+    loss_fn = torch.nn.BCELoss(reduction='sum')
+    losses, accuracies = train(model, loss_fn, x, y)
+    plot_stats(losses, accuracies, 'Question 4')
 
 
 main()
