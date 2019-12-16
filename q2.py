@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from helpers import train, plot_stats
+from helpers import train, plot_stats, initialize_weights
 
 
 def main():
@@ -17,9 +17,10 @@ def main():
         torch.nn.Linear(H, D_out),
         torch.nn.Sigmoid()
     )
+    initialize_weights(model)
     loss_fn = torch.nn.MSELoss(reduction='sum')
     losses, accuracies = train(model, loss_fn, x, y)
-    plot_stats(losses, accuracies, 'Question 1')
+    plot_stats(losses, accuracies, 'Q2.1 - Sigmoid with L2')
 
     # ========== QUESTION 2 ==========
     model = torch.nn.Sequential(
@@ -28,10 +29,11 @@ def main():
         torch.nn.Linear(H, D_out),
         torch.nn.Sigmoid()
     )
+    initialize_weights(model)
     loss_fn = torch.nn.BCELoss(reduction='sum')
     losses, accuracies = train(model, loss_fn, x, y)
-    plot_stats(losses, accuracies, 'Question 2')
-#
+    plot_stats(losses, accuracies, 'Q2.2 - Sigmoid with CE')
+
     # ========== QUESTION 3 ==========
     model = torch.nn.Sequential(
         torch.nn.Linear(D_in, H),
@@ -39,9 +41,10 @@ def main():
         torch.nn.Linear(H, D_out),
         torch.nn.Sigmoid()
     )
+    initialize_weights(model)
     loss_fn = torch.nn.MSELoss(reduction='sum')
     losses, accuracies = train(model, loss_fn, x, y)
-    plot_stats(losses, accuracies, 'Question 3')
+    plot_stats(losses, accuracies, 'Q2.3 - ReLU with L2')
 
     # ========== QUESTION 4 ==========
     model = torch.nn.Sequential(
@@ -50,9 +53,10 @@ def main():
         torch.nn.Linear(H, D_out),
         torch.nn.Sigmoid()
     )
+    initialize_weights(model)
     loss_fn = torch.nn.BCELoss(reduction='sum')
     losses, accuracies = train(model, loss_fn, x, y)
-    plot_stats(losses, accuracies, 'Question 4')
+    plot_stats(losses, accuracies, 'Q2.4 - ReLU with CE')
 
 
 main()

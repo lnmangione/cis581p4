@@ -5,7 +5,7 @@ from tqdm import trange
 
 def train(model, loss_fn, x, y):
     losses, accuracies = [], []
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+    optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
     for _ in trange(10000):
         y_pred = model(x)
@@ -69,3 +69,14 @@ def plot_stats(losses, accuracies, title):
     plt.xlabel('Training Iteration')
     plt.ylabel('Accuracy')
     plt.show()
+
+    print(len(losses))
+
+
+def initialize_weights(model):
+    for m in model.modules():
+        if isinstance(m, torch.nn.Linear):
+            torch.nn.init.normal(m.weight, mean=0, std=0.1)
+            torch.nn.init.constant(m.bias, 0.1)
+        if isinstance(m, torch.nn.Conv2d):
+            torch.nn.init.normal(m.weight, mean=0, std=0.1)
