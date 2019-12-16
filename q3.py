@@ -30,7 +30,7 @@ class DetModel(torch.nn.Module):
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
         x = x.reshape(64, -1)
-        return torch.sigmoid(self.fc1(x)), F.relu(self.fc2(x))  # Return label, width
+        return torch.sigmoid(self.fc1(x)), self.fc2(x)  # Return label, width
 
 
 def main():

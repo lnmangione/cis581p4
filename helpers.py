@@ -70,7 +70,7 @@ def plot_stats(losses, accuracies, title):
     plt.ylabel('Accuracy')
     plt.show()
 
-    print(len(losses))
+    print(str(len(losses)) + ' iterations for ' + title)
 
 
 def initialize_weights(model):
