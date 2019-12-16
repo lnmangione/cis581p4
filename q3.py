@@ -46,7 +46,7 @@ def main():
     initialize_weights(line_model)
     loss_fn = torch.nn.BCELoss(reduction='mean')
     losses, accuracies = train(line_model, loss_fn, x_line, y_line)
-    plot_stats(losses, accuracies, 'Question 1')
+    plot_stats(losses, accuracies, 'Q3.1')
 
     # ========== QUESTION 2 ==========
     det_model = DetModel()
@@ -54,8 +54,8 @@ def main():
     loss_fn1 = torch.nn.BCELoss(reduction='sum')
     loss_fn2 = torch.nn.MSELoss(reduction='sum')
     losses1, accuracies1, losses2, accuracies2 = train2(det_model, loss_fn1, loss_fn2, 0.01, 0.001, x_det, y_det, y_detwid)
-    plot_stats(losses1, accuracies1, 'Question 2 - Cross-Entropy')
-    plot_stats(losses2, accuracies2, 'Question 2 - L2')
+    plot_stats(losses1, accuracies1, 'Q3.2 - Cross-Entropy')
+    plot_stats(losses2, accuracies2, 'Q3.2 - L2')
 
 
 main()
