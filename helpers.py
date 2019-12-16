@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from tqdm import trange
 
 
-def train(model, loss_fn, x, y):
+def train(model, loss_fn, x, y, lr=0.1):
     losses, accuracies = [], []
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+    optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 
     for _ in trange(10000):
         y_pred = model(x)
@@ -76,7 +76,7 @@ def plot_stats(losses, accuracies, title):
 def initialize_weights(model):
     for m in model.modules():
         if isinstance(m, torch.nn.Linear):
-            torch.nn.init.normal(m.weight, mean=0, std=0.1)
-            torch.nn.init.constant(m.bias, 0.1)
+            torch.nn.init.normal_(m.weight, mean=0, std=0.1)
+            torch.nn.init.constant_(m.bias, 0.1)
         if isinstance(m, torch.nn.Conv2d):
-            torch.nn.init.normal(m.weight, mean=0, std=0.1)
+            torch.nn.init.normal_(m.weight, mean=0, std=0.1)

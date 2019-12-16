@@ -55,7 +55,7 @@ def main():
     )
     initialize_weights(model)
     loss_fn = torch.nn.BCELoss(reduction='sum')
-    losses, accuracies = train(model, loss_fn, x, y)
+    losses, accuracies = train(model, loss_fn, x, y, 0.05)
     plot_stats(losses, accuracies, 'Q2.4 - ReLU with CE')
 
 
